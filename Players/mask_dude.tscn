@@ -318,20 +318,21 @@ radius = 2.0
 height = 6.0
 
 [node name="MaskDude" instance=ExtResource("1_niw1b")]
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_dspnv")
 animation = &"idle"
 
-[node name="head" type="CollisionShape2D" parent="." index="2"]
+[node name="head" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.3125, 3)
 shape = SubResource("RectangleShape2D_e81cv")
 
-[node name="leftFoot" type="CollisionShape2D" parent="." index="3"]
+[node name="leftFoot" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(-6, 13)
 shape = SubResource("CapsuleShape2D_ntflp")
 
-[node name="rightFoot" type="CollisionShape2D" parent="." index="4"]
+[node name="rightFoot" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(4, 13)
 shape = SubResource("CapsuleShape2D_ntflp")

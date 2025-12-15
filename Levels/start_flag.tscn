@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b12oxyrhquyn8"]
+
+[ext_resource type="Texture2D" uid="uid://sby2hya1n3gi" path="res://assets/Items/Checkpoints/Start/Start (Idle).png" id="1_fwlfr"]
+
+[node name="StartFlag" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fwlfr")

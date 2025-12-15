@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 				anim.play("jump")
 			else:
 				anim.play("fall")
-		print(velocity)
 	else:
 		jump_count = 0 
 
