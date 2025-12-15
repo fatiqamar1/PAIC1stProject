@@ -1,10 +1,44 @@
-[gd_scene load_steps=37 format=3 uid="uid://btuu5hrgbot4x"]
+[gd_scene load_steps=49 format=3 uid="uid://btuu5hrgbot4x"]
 
 [ext_resource type="PackedScene" uid="uid://cynm2cv6idelu" path="res://Players/player.tscn" id="1_niw1b"]
 [ext_resource type="Texture2D" uid="uid://cmtyto4wpyjhw" path="res://assets/Main Characters/Mask Dude/Hit (32x32).png" id="1_wbdu1"]
+[ext_resource type="Texture2D" uid="uid://d3bksy8b61r2e" path="res://assets/Main Characters/Mask Dude/Double Jump (32x32).png" id="2_l5706"]
 [ext_resource type="Texture2D" uid="uid://dir8l7yhjnl7x" path="res://assets/Main Characters/Mask Dude/Idle (32x32).png" id="2_niw1b"]
 [ext_resource type="Texture2D" uid="uid://gyd2tf4m8kc2" path="res://assets/Main Characters/Mask Dude/Jump (32x32).png" id="3_l5706"]
 [ext_resource type="Texture2D" uid="uid://cqiqakherjdln" path="res://assets/Main Characters/Mask Dude/Run (32x32).png" id="4_e81cv"]
+[ext_resource type="Texture2D" uid="uid://cffyus8txp68y" path="res://assets/Main Characters/Mask Dude/Fall (32x32).png" id="6_e81cv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dspnv"]
+atlas = ExtResource("2_l5706")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u44hj"]
+atlas = ExtResource("2_l5706")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prsmq"]
+atlas = ExtResource("2_l5706")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puk18"]
+atlas = ExtResource("2_l5706")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anspg"]
+atlas = ExtResource("2_l5706")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4cqp"]
+atlas = ExtResource("2_l5706")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f18lp"]
+atlas = ExtResource("6_e81cv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21005"]
+atlas = ExtResource("6_e81cv")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5706"]
 atlas = ExtResource("1_wbdu1")
@@ -129,6 +163,40 @@ region = Rect2(352, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_dspnv"]
 animations = [{
 "frames": [{
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_dspnv")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_u44hj")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_prsmq")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_puk18")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_anspg")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_g4cqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f18lp")
+}],
+"loop": false,
+"name": &"doubleJump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21005")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_l5706")
 }, {
@@ -242,8 +310,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e81cv"]
+size = Vector2(18.625, 18)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntflp"]
+radius = 2.0
+height = 6.0
+
 [node name="MaskDude" instance=ExtResource("1_niw1b")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_dspnv")
-animation = &"walk"
+animation = &"idle"
+
+[node name="head" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(-0.3125, 3)
+shape = SubResource("RectangleShape2D_e81cv")
+
+[node name="leftFoot" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-6, 13)
+shape = SubResource("CapsuleShape2D_ntflp")
+
+[node name="rightFoot" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(4, 13)
+shape = SubResource("CapsuleShape2D_ntflp")
