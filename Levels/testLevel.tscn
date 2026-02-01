@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3x4bycqmhr34"]
+[gd_scene load_steps=9 format=3 uid="uid://c3x4bycqmhr34"]
 
 [ext_resource type="Texture2D" uid="uid://wq84vplbaltl" path="res://assets/Terrain/Terrain (16x16).png" id="1_ftlgd"]
 [ext_resource type="PackedScene" uid="uid://btuu5hrgbot4x" path="res://Players/mask_dude.tscn" id="2_6ehle"]
 [ext_resource type="PackedScene" uid="uid://bmag4q6tfygp6" path="res://Levels/end_flag.tscn" id="3_6ehle"]
 [ext_resource type="PackedScene" uid="uid://b12oxyrhquyn8" path="res://Levels/start_flag.tscn" id="4_faoc1"]
+[ext_resource type="Script" uid="uid://b4ythd1e58m57" path="res://Levels/platform_body.gd" id="5_owrup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_faoc1"]
 texture = ExtResource("1_ftlgd")
@@ -52,6 +53,9 @@ texture = ExtResource("1_ftlgd")
 physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_faoc1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_houwy"]
+size = Vector2(127.5, 17.5)
+
 [node name="testLevel" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -67,3 +71,21 @@ position = Vector2(1085, 561)
 
 [node name="MaskDude" parent="." instance=ExtResource("2_6ehle")]
 position = Vector2(59, 577)
+
+[node name="MovingPlatform" type="Node2D" parent="."]
+
+[node name="PlatformBody" type="CharacterBody2D" parent="MovingPlatform"]
+script = ExtResource("5_owrup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform/PlatformBody"]
+position = Vector2(237, 535)
+shape = SubResource("RectangleShape2D_houwy")
+
+[node name="ColorRect" type="ColorRect" parent="MovingPlatform"]
+offset_left = -301.0
+offset_top = 527.0
+offset_right = -177.0
+offset_bottom = 546.0
+
+[node name="MaskDude2" parent="." instance=ExtResource("2_6ehle")]
+position = Vector2(256, 514)
